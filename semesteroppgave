@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as np
+data = pd.read_csv('nyc-rolling-sales.csv')
+
+df = pd.DataFrame(data)
+print(df)
+
+
+# DROPPER EASE-MENT FORDI DEN ER TOM
+df.drop(['EASE-MENT'], axis=1 ,inplace = True)
+# DROPPER UNNAMED: 0 FORDI DEN IKKE ER RELEVANT
+df.drop(['Unnamed: 0'], axis=1, inplace = True)
+df = df.drop_duplicates(df.columns, keep='last')
+
+df.replace({'-':0}, inplace=True)
+
+df.replace(' ', np.nan, inplace=True)
